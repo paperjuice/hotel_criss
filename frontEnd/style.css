@@ -1,0 +1,18 @@
+
+
+:root {
+  --bg-color: #2A2A2A;
+
+  --title-font: 'Engagement', cursive;
+  --title-color: #F9DA41;
+
+  --text-font: 'Source Serif Pro', serif;
+  --book-color: #FFA41B;
+
+  --header-color: #222222;
+}
+
+
+body {
+  background-color: var(--bg-color);
+}

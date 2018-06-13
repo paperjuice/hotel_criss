@@ -2,7 +2,6 @@ import Html exposing (Html, text, div)
 import Navigation exposing (Location)
 import UrlParser exposing (parseHash, s, oneOf, top, map)
 
-
 main =
   Navigation.program Path
   { view = view
@@ -55,4 +54,18 @@ update : Msg -> Model -> ( Model, Cmd msg )
 update msg model =
   case msg of
     _-> ( model, Cmd.none )
+
+
+---------------
+-- HOME VIEW --
+---------------
+
+
+
+
+
+
+
+
+
 

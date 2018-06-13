@@ -4,5 +4,14 @@ elm-stuff
 repl-temp-*
 
 
-#mac directory config
+# mac directory config
 .DS_Store
+
+# vim temp files
+*.swp
+
+# design folder
+design
+
+#ignore compiler generated files
+*.js
