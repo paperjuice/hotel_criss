@@ -1,7 +1,7 @@
 :root {
-  --header-color: #222222;
+  --header-color: #000;
   --title-font: 'Engagement', cursive;
-  --title-color: #F9DA41;
+  --title-color: #Ffffff;
   --book-color: #FFA41B;
   --language-font-size: 14px;
 }
@@ -45,7 +45,7 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  left: 20px;
+  right: 30px;
   width: 130px;
   height: 35px;
   border: 2px solid orange;
@@ -56,7 +56,7 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  right: 20px;
+  left: 30px;
 
   font-size: var(--language-font-size);
 }
