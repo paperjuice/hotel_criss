@@ -11,9 +11,11 @@ main =
   , subscriptions = (\_->Sub.none)
   }
 
+
 -- MSG --
 type Msg
   = Path Location
+
 
 -- ROUTE --
 type Route
@@ -33,6 +35,7 @@ matcher =
     , map Rooms (s "rooms")
     ]
 
+
 -- MODEL --
 type Language = Ro | En
 type alias Model =
@@ -46,15 +49,6 @@ init location =
   update (Path location) (Model Home Ro)
 
 
--- VIEW --
-view : Model -> Html msg
-view model =
-  case model.route of
-    Home     -> viewHome model
-    Rooms    -> div [ ] [ text "Rooms" ]
-    NotFound -> div [ ] [ text "Nope :(" ]
-
-
 -- UPDATE --
 update : Msg -> Model -> ( Model, Cmd msg )
 update msg model =
@@ -66,6 +60,15 @@ update msg model =
           ( { model | route = newRoute }, Cmd.none )
 
 
+-- VIEW --
+view : Model -> Html msg
+view model =
+  case model.route of
+    Home     -> viewHome model
+    Rooms    -> div [ ] [ text "Rooms kfalsdjfkjsd" ]
+    NotFound -> div [ ] [ text "Nope :(" ]
+
+
 ---------------
 -- HOME VIEW --
 ---------------
@@ -73,6 +76,7 @@ viewHome : Model -> Html msg
 viewHome model =
   div [ class "home" ]
       [ header model
+      , description
       ]
 
 header : Model -> Html msg
@@ -82,6 +86,14 @@ header model =
       , img [ class "hotel-stars", src "icons/hotel-star.svg" ] [ ]
       , button [ class "book" ] [ text "Rezerva" ]
       , div [ class "language" ] (languageColor model.language)
+      ]
+
+description : Html msg
+description =
+  div [ class "description" ]
+      [ div [ class "text" ]
+            [ text "Aici putem pune  o scurta descriere despre Bucuresti, putin despre istoricul hotelului, unde este situtat in capitala, cateva vorbe despre numarul de camere si conditiil excelente pe care le ofere." ]
+      , img [ class "break", src "icons/break.svg" ] [ ]
       ]
 
 languageColor : Language -> List (Html msg)
