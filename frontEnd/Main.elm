@@ -77,6 +77,7 @@ viewHome model =
   div [ class "home" ]
       [ header model
       , description
+      , containerLeft
       ]
 
 header : Model -> Html msg
@@ -112,3 +113,30 @@ languageButtons colorRo colorEn =
       , button [ style [ ("color", colorEn) ] ] [ text "En" ]
       ]
 
+containerLeft : Html msg
+containerLeft =
+  div [ class "frame" ]
+      [ div [ class "container" ]
+            [ div [ class "left" ]
+                  [ div [ class "picture" ]
+                        [ img [ src "https://i.imgur.com/bMYJQje.png" ] [ ]
+                        ]
+                  , div [ class "text" ]
+                        [ div [ class "title" ] [ text "Camere" ]
+                        , div [ class "description" ]
+                              [ text "Laudam camere nitel, spunem cate sunt in total, si cateva vorbe despre cum  e fiecare si ca preturile sunt accesible." ]
+                        , detailButton
+                        ]
+                  ]
+            , div [ class "right" ]
+                  [ img [ src "https://i.imgur.com/ttSkgoA.jpg" ] [ ]
+                  ]
+            , div [ class "bottom" ]
+                  [ img [ src "https://i.imgur.com/69P9RmO.jpg" ] [ ]
+                  ]
+            ]
+      ]
+
+detailButton : Html msg
+detailButton =
+  div [ class "detail-button" ] [ text "Detalii" ]

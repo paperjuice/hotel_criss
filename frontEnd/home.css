@@ -125,4 +125,113 @@
 }
 
 
+/* ------------------- */
+/* --- CONTAINERS  --- */
+/* ------------------- */
+.frame {
+  position: relative;
+  width: auto;
+  display: flex;
+  justify-content: center;
+  top: 350px;
+}
 
+.frame .container {
+  /*background-color: gray;*/
+
+  width: 650;
+  height: 720px;
+
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.frame .container .right{
+  width: 315px;
+  height: 400px;
+  background-color: blue;
+  overflow: hidden;
+
+  box-shadow: 0px 3px 5px #444;
+}
+.frame .container .right img {
+  position: relative;
+  transform: scale(0.8);
+  right: 200px;
+  bottom: 80px;
+}
+
+.frame .container .bottom{
+  width: 650px;
+  height: 300px;
+  background-color: yellow;
+  margin-top:10px;
+
+  overflow: hidden;
+  box-shadow: 0px 3px 5px #444;
+}
+.frame .container .bottom img {
+  position: relative;
+  transform: scale(0.9);
+  right: 80px;
+  bottom: 180px;
+}
+
+.frame .container .left {
+  width: 315px;
+  height: 400px;
+  /*background-color: red;*/
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.frame .container .left .picture {
+  width: 315px;
+  height: 225px;
+  background-color: #222;
+
+  box-shadow: 0px 3px 5px #444;
+  overflow: hidden;
+}
+.frame .container .left .picture img {
+  position: relative;
+  transform: scale(0.45);
+  right: 240px;
+  bottom: 195px;
+}
+.frame .container .left .text{
+  width: 315px;
+  height: 225px;
+  margin-top: 30px;
+}
+
+.frame .container .left .text .title {
+  color: black;
+  font-size: 3em;
+}
+.frame .container .left .text .description {
+  margin-top: 10px;
+  color: black;
+  font-size: 1em;
+}
+
+
+/* ------------------- */
+/* - DETAIL BUTTON --- */
+/* ------------------- */
+.detail-button {
+  width: 100px;
+  height: 40px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 40px;
+  margin-top: 20px;
+  float: right;
+
+  color: black;
+  border: 2px solid black;
+  font-size: 2em;
+}
