@@ -79,6 +79,7 @@ viewHome model =
       [ header model
       , description
       , container
+      , footer
       ]
 
 header : Model -> Html msg
@@ -119,6 +120,8 @@ container =
   div [ class "frame" ]
       [ roomItem
       , restaurantItem
+      , conferenceItem
+      , offerItem
       ]
 
 roomItem : Html msg
@@ -161,10 +164,57 @@ restaurantItem =
             , descriptionItem "Restaurant" "Spunem despre mancarea pe care o ofera hotelul si contextul in care o poate servi (evenimente)."
             ]
       , div [ class "bottom" ]
-            [ img [ src "https://i.imgur.com/69P9RmO.jpg" ] [ ]
+            [ img [ class "rest-bot"
+                  , src "https://i.imgur.com/l3YZ8Qe.jpg"
+                  ] [ ]
             ]
       ]
 
+conferenceItem : Html msg
+conferenceItem =
+  div [ class "container" ]
+      [ div [ class "left" ]
+            [ div [ class "picture" ]
+                  [ img [ class "conf-left"
+                        , src "https://i.imgur.com/XS6uWXP.jpg"
+                        ] [ ]
+                  ]
+            , descriptionItem "Centru de conferinte" "Ceva despre fatul ca hotelul ofera spatii pentru conferinte."
+            ]
+      , div [ class "right" ]
+            [ img [ class "conf-right"
+                  , src "https://i.imgur.com/D9hXKgc.jpg"
+                  ] [ ]
+            ]
+      , div [ class "bottom" ]
+            [ img [ class "conf-bot"
+                  , src "https://i.imgur.com/8TBYOGM.jpg"
+                  ] [ ]
+            ]
+      ]
+
+offerItem : Html msg
+offerItem =
+  div [ class "container" ]
+      [ div [ class "right" ]
+            [ img [ class "offer-right"
+                  , src "https://i.imgur.com/lSW3WK2.jpg"
+                  ] [ ]
+            ]
+      , div [ class "left" ]
+            [ div [ class "picture" ]
+                  [ img [ class "offer-left"
+                        , src "https://i.imgur.com/V24BLy2.jpg"
+                        ] [ ]
+                  ]
+            , descriptionItem "Oferte" "Hotelul organizeaza diferite eveniment in functie de perioada anului."
+            ]
+      , div [ class "bottom" ]
+            [ img [ class "offer-bot"
+                  , src "https://i.imgur.com/dINiFcv.jpg"
+                  ] [ ]
+            ]
+      ]
 
 descriptionItem : String -> String -> Html msg
 descriptionItem title description=
@@ -178,3 +228,10 @@ descriptionItem title description=
 detailButton : Html msg
 detailButton =
   div [ class "detail-button" ] [ text "Detalii" ]
+
+
+footer : Html msg
+footer =
+  div [ class "footer" ]
+      [
+      ]
