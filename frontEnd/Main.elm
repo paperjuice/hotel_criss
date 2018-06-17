@@ -12,6 +12,7 @@ main =
   }
 
 
+
 -- MSG --
 type Msg
   = Path Location
@@ -77,7 +78,7 @@ viewHome model =
   div [ class "home" ]
       [ header model
       , description
-      , containerLeft
+      , container
       ]
 
 header : Model -> Html msg
@@ -113,28 +114,65 @@ languageButtons colorRo colorEn =
       , button [ style [ ("color", colorEn) ] ] [ text "En" ]
       ]
 
-containerLeft : Html msg
-containerLeft =
+container : Html msg
+container =
   div [ class "frame" ]
-      [ div [ class "container" ]
-            [ div [ class "left" ]
-                  [ div [ class "picture" ]
-                        [ img [ src "https://i.imgur.com/bMYJQje.png" ] [ ]
-                        ]
-                  , div [ class "text" ]
-                        [ div [ class "title" ] [ text "Camere" ]
-                        , div [ class "description" ]
-                              [ text "Laudam camere nitel, spunem cate sunt in total, si cateva vorbe despre cum  e fiecare si ca preturile sunt accesible." ]
-                        , detailButton
-                        ]
+      [ roomItem
+      , restaurantItem
+      ]
+
+roomItem : Html msg
+roomItem =
+  div [ class "container" ]
+      [ div [ class "left" ]
+            [ div [ class "picture" ]
+                  [ img [ class "room-block"
+                        , src "https://i.imgur.com/bMYJQje.png"
+                        ] [ ]
                   ]
-            , div [ class "right" ]
-                  [ img [ src "https://i.imgur.com/ttSkgoA.jpg" ] [ ]
-                  ]
-            , div [ class "bottom" ]
-                  [ img [ src "https://i.imgur.com/69P9RmO.jpg" ] [ ]
-                  ]
+            , descriptionItem "Camere" "Laudam camere nitel, spunem cate sunt in total, si cateva vorbe despre cum e fiecare si ca preturile sunt accesible."
             ]
+      , div [ class "right" ]
+            [ img [ class "room-right"
+                  , src "https://i.imgur.com/ttSkgoA.jpg"
+                  ] [ ]
+            ]
+      , div [ class "bottom" ]
+            [ img [ class "room-bot"
+                  , src "https://i.imgur.com/69P9RmO.jpg"
+                  ] [ ]
+            ]
+      ]
+
+restaurantItem : Html msg
+restaurantItem =
+  div [ class "container" ]
+      [ div [ class "right" ]
+            [ img [ class "rest-right"
+                  , src "https://i.imgur.com/pFpC8Pp.jpg"
+                  ] [ ]
+            ]
+      , div [ class "left" ]
+            [ div [ class "picture" ]
+                  [ img [ class "rest-left"
+                        , src "https://i.imgur.com/1GGzLwD.jpg"
+                        ] [ ]
+                  ]
+            , descriptionItem "Restaurant" "Spunem despre mancarea pe care o ofera hotelul si contextul in care o poate servi (evenimente)."
+            ]
+      , div [ class "bottom" ]
+            [ img [ src "https://i.imgur.com/69P9RmO.jpg" ] [ ]
+            ]
+      ]
+
+
+descriptionItem : String -> String -> Html msg
+descriptionItem title description=
+  div [ class "text" ]
+      [ div [ class "title" ] [ text title ]
+      , div [ class "description" ]
+            [ text  description ]
+      , detailButton
       ]
 
 detailButton : Html msg
