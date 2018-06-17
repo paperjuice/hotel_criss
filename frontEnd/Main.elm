@@ -79,6 +79,7 @@ viewHome model =
       [ header model
       , description
       , container
+      , contact
       , footer
       ]
 
@@ -214,6 +215,13 @@ offerItem =
                   , src "https://i.imgur.com/dINiFcv.jpg"
                   ] [ ]
             ]
+      ]
+
+contact =
+  div [ class "contact" ]
+      [ div [ class "title" ] [ text "Contact" ]
+      , img [ src "https://i.imgur.com/p8dr1yh.png"] [ ]
+      , detailButton
       ]
 
 descriptionItem : String -> String -> Html msg
