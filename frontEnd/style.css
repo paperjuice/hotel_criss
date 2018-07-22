@@ -9,5 +9,5 @@ body {
   background-color: var(--bg-color);
   color: #fff;
   margin: 0px;
-  height: 4700px;
+  overflow-x: hidden;
 }
