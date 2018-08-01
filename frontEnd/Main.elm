@@ -1,9 +1,9 @@
 import Html exposing (Html, text, div, img, button, span, iframe, a, span, p, input)
 import Html.Events exposing (onClick)
-import Html.Attributes exposing (class, src, style, href, type_, placeholder)
+import Html.Attributes exposing (class, id, src, style, href, type_, placeholder)
 import Navigation exposing (Location)
 import UrlParser exposing (parseHash, s, oneOf, top, map)
-import Dom.Scroll exposing (toTop)
+import Dom.Scroll exposing (toTop, toBottom, toY)
 import Task exposing (attempt)
 
 main =
@@ -46,6 +46,10 @@ type Msg
   | Language
   | GoHome
   | RoomsDetails
+  | RoomsDetailsTwin3
+  | RoomsDetailsTwin3Superior
+  | RoomsDetailsTwin4
+  | RoomsDetailsApartment
   | RestaurantDetails
   | ConferenceDetails
   | PhGalleryDetails
@@ -131,6 +135,38 @@ update msg model =
       , Cmd.batch
         [ navNewUrl model "#/camere" "#/rooms"
         , cmdToTop
+        ]
+      )
+
+    RoomsDetailsTwin3 ->
+      ( {model | route = Rooms }
+      , Cmd.batch
+        [ navNewUrl model "#/camere" "#/rooms"
+        , toTop "twin3" |> attempt (\_ -> DoNothing)
+        ]
+      )
+
+    RoomsDetailsTwin3Superior ->
+      ( {model | route = Rooms }
+      , Cmd.batch
+        [ navNewUrl model "#/camere" "#/rooms"
+        , toY "twin3superior" 1000 |> attempt (\_ -> DoNothing)
+        ]
+      )
+
+    RoomsDetailsTwin4 ->
+      ( {model | route = Rooms }
+      , Cmd.batch
+        [ navNewUrl model "#/camere" "#/rooms"
+        , toTop "twin4" |> attempt (\_ -> DoNothing)
+        ]
+      )
+
+    RoomsDetailsApartment ->
+      ( {model | route = Rooms }
+      , Cmd.batch
+        [ navNewUrl model "#/camere" "#/rooms"
+        , toTop "apartment" |> attempt (\_ -> DoNothing)
         ]
       )
 
@@ -278,22 +314,22 @@ roomItem model =
       , div [ class "picture-container" ]
             [ div [ class "picture"]
                   [ div [ class "title" ] [ text "Camera matrimoniala/twin  ★ ★ ★ "]
-                  , img [ src "https://i.imgur.com/DjV2Tk0.jpg", onClick RoomsDetails ] [ ]
+                  , img [ src "https://i.imgur.com/DjV2Tk0.jpg", onClick RoomsDetailsTwin3 ] [ ]
                   , div [ class "text" ] [ text "Rezerva acum!" ]
                   ]
             , div [ class "picture" ]
                   [ div [ class "title" ] [ text "Camera matrimoniala/twin Superioara  ★ ★ ★ "]
-                  , img [ src "https://i.imgur.com/2ZCWb0g.jpg", onClick RoomsDetails ] [ ]
+                  , img [ src "https://i.imgur.com/2ZCWb0g.jpg", onClick RoomsDetailsTwin3Superior ] [ ]
                   , div [ class "text" ] [ text "Rezerva acum!" ]
                   ]
              , div [ class "picture" ]
                   [ div [ class "title" ] [ text "Camera matrimoniala/twin  ★ ★ ★ ★ "]
-                  , img [ src "https://i.imgur.com/S2QS5Xv.jpg", onClick RoomsDetails ] [ ]
+                  , img [ src "https://i.imgur.com/S2QS5Xv.jpg", onClick RoomsDetailsTwin4 ] [ ]
                   , div [ class "text" ] [ text "Rezerva acum!" ]
                   ]
              , div [ class "picture" ]
                   [ div [ class "title" ] [ text "Apartament  ★ ★ ★ ★ "]
-                  , img [ src "https://i.imgur.com/Ea1kShC.jpg", onClick RoomsDetails  ] [ ]
+                  , img [ src "https://i.imgur.com/Ea1kShC.jpg", onClick RoomsDetailsApartment ] [ ]
                   , div [ class "text" ] [ text "Rezerva acum!" ]
                   ]
              ]
@@ -454,8 +490,8 @@ roomPage =
             , div [ class "non-ref" ] [ text "Non Refundable!" ]
             , div [ class "pay" ] [ text "Checkout" ]
             ]
-      , div [ class "room-page-item" ]
-            [ div [ class "title" ] [ text "Camera matrimoniala/twin ***"]
+      , div [ class "room-page-item", id "twin3" ]
+            [ div [ class "title" ] [ text "Camera matrimoniala/twin ★★★"]
             , div [ class "price" ] [ text "200.0 LEI/noapte" ]
             , div [ class "desc" ] [ text dummyText ]
             , div [ class "icon-title" ] [ text "Detalii camera" ]
@@ -515,8 +551,197 @@ roomPage =
             , div [ class "select" ]
                   [ div [ class "select-button" ] [text "Selecteaza" ]
                   ]
+            , img [ class "break", src "icons/break.svg" ] []
             ]
-      , img [ class "break", src "icons/break.svg" ] []
+      , div [ class "room-page-item", id "twin3superior"]
+            [ div [ class "title" ] [ text "Camera matrimoniala/twin ★★★ Superior"]
+            , div [ class "price" ] [ text "200.0 LEI/noapte" ]
+            , div [ class "desc" ] [ text dummyText ]
+            , div [ class "icon-title" ] [ text "Detalii camera" ]
+            , div [ class "details" ]
+                  [ div [ class "icon-cont" ]
+                        [ img [ src "icons/_size.svg" ] [ ]
+                        , div [ class "desc" ] [ text "31 m2" ]
+                        ]
+                  , div [ class "icon-cont" ]
+                        [ img [ src "icons/_avatar.svg" ] [ ]
+                        , div [ class "desc" ] [ text "2 people" ]
+                        ]
+                  , div [ class "icon-cont" ]
+                        [ img [ src "icons/_bed.svg" ] [ ]
+                        , div [ class "desc" ] [ text "Double bed" ]
+                        ]
+                  ]
+            , div [ class "amenities-title" ] [ text "Facilitati"]
+            , div [ class "amenities" ]
+                  [ div [ class "icon-cont" ]
+                        [ img [ src "icons/_tv.svg" ] [ ]
+                        , div [ class "desc" ] [ text "TV" ]
+                        ]
+                  , div [ class "icon-cont" ]
+                        [ img [ src "icons/_hairdryer.svg" ] [ ]
+                        , div [ class "desc" ] [ text "Uscator de par" ]
+                        ]
+                  , div [ class "icon-cont" ]
+                        [ img [ src "icons/_minibar.svg" ] [ ]
+                        , div [ class "desc" ] [ text "Mini bar" ]
+                        ]
+                  , div [ class "icon-cont" ]
+                        [ img [ src "icons/_phone.svg" ] [ ]
+                        , div [ class "desc" ] [ text "Telefon" ]
+                        ]
+                  , div [ class "icon-cont" ]
+                        [ img [ src "icons/_room-service.svg" ] [ ]
+                        , div [ class "desc" ] [ text "Room service" ]
+                        ]
+                  , div [ class "icon-cont" ]
+                        [ img [ src "icons/_shower.svg" ] [ ]
+                        , div [ class "desc" ] [ text "Dus" ]
+                        ]
+                  , div [ class "icon-cont" ]
+                        [ img [ src "icons/_Wardrobe.svg" ] [ ]
+                        , div [ class "desc" ] [ text "Spatii de depozitare" ]
+                        ]
+                  , div [ class "icon-cont" ]
+                        [ img [ src "icons/_wifi.svg" ] [ ]
+                        , div [ class "desc" ] [ text "Wi-Fi de mare viteza" ]
+                        ]
+                  ]
+            , div [ class "picture-cont"]
+                  [ div [ ] [ img [ src "https://i.imgur.com/2ZCWb0g.jpg" ] [ ] ]
+                  , div [ ] [ img [ src "https://i.imgur.com/5dfAQRZ.jpg" ] [ ] ]
+                  ]
+            , div [ class "select" ]
+                  [ div [ class "select-button" ] [text "Selecteaza" ]
+                  ]
+            , img [ class "break", src "icons/break.svg" ] []
+            ]
+      , div [ class "room-page-item", id "twin4"]
+            [ div [ class "title" ] [ text "Camera matrimoniala/twin ★★★★"]
+            , div [ class "price" ] [ text "200.0 LEI/noapte" ]
+            , div [ class "desc" ] [ text dummyText ]
+            , div [ class "icon-title" ] [ text "Detalii camera" ]
+            , div [ class "details" ]
+                  [ div [ class "icon-cont" ]
+                        [ img [ src "icons/_size.svg" ] [ ]
+                        , div [ class "desc" ] [ text "29 m2" ]
+                        ]
+                  , div [ class "icon-cont" ]
+                        [ img [ src "icons/_avatar.svg" ] [ ]
+                        , div [ class "desc" ] [ text "2 people" ]
+                        ]
+                  , div [ class "icon-cont" ]
+                        [ img [ src "icons/_bed.svg" ] [ ]
+                        , div [ class "desc" ] [ text "Double bed" ]
+                        ]
+                  ]
+            , div [ class "amenities-title" ] [ text "Facilitati"]
+            , div [ class "amenities" ]
+                  [ div [ class "icon-cont" ]
+                        [ img [ src "icons/_tv.svg" ] [ ]
+                        , div [ class "desc" ] [ text "TV" ]
+                        ]
+                  , div [ class "icon-cont" ]
+                        [ img [ src "icons/_hairdryer.svg" ] [ ]
+                        , div [ class "desc" ] [ text "Uscator de par" ]
+                        ]
+                  , div [ class "icon-cont" ]
+                        [ img [ src "icons/_minibar.svg" ] [ ]
+                        , div [ class "desc" ] [ text "Mini bar" ]
+                        ]
+                  , div [ class "icon-cont" ]
+                        [ img [ src "icons/_phone.svg" ] [ ]
+                        , div [ class "desc" ] [ text "Telefon" ]
+                        ]
+                  , div [ class "icon-cont" ]
+                        [ img [ src "icons/_room-service.svg" ] [ ]
+                        , div [ class "desc" ] [ text "Room service" ]
+                        ]
+                  , div [ class "icon-cont" ]
+                        [ img [ src "icons/_shower.svg" ] [ ]
+                        , div [ class "desc" ] [ text "Dus" ]
+                        ]
+                  , div [ class "icon-cont" ]
+                        [ img [ src "icons/_Wardrobe.svg" ] [ ]
+                        , div [ class "desc" ] [ text "Spatii de depozitare" ]
+                        ]
+                  , div [ class "icon-cont" ]
+                        [ img [ src "icons/_wifi.svg" ] [ ]
+                        , div [ class "desc" ] [ text "Wi-Fi de mare viteza" ]
+                        ]
+                  ]
+            , div [ class "picture-cont"]
+                  [ div [ ] [ img [ src "https://i.imgur.com/0qY7C5l.jpg" ] [ ] ]
+                  , div [ ] [ img [ src "https://i.imgur.com/MyUysra.jpg" ] [ ] ]
+                  ]
+            , div [ class "select" ]
+                  [ div [ class "select-button" ] [text "Selecteaza" ]
+                  ]
+            , img [ class "break", src "icons/break.svg" ] []
+            ]
+      , div [ class "room-page-item", id "apartament"  ]
+            [ div [ class "title" ] [ text "Apartament ★★★★"]
+            , div [ class "price" ] [ text "200.0 LEI/noapte" ]
+            , div [ class "desc" ] [ text dummyText ]
+            , div [ class "icon-title" ] [ text "Detalii camera" ]
+            , div [ class "details" ]
+                  [ div [ class "icon-cont" ]
+                        [ img [ src "icons/_size.svg" ] [ ]
+                        , div [ class "desc" ] [ text "29 m2" ]
+                        ]
+                  , div [ class "icon-cont" ]
+                        [ img [ src "icons/_avatar.svg" ] [ ]
+                        , div [ class "desc" ] [ text "2 people" ]
+                        ]
+                  , div [ class "icon-cont" ]
+                        [ img [ src "icons/_bed.svg" ] [ ]
+                        , div [ class "desc" ] [ text "Double bed" ]
+                        ]
+                  ]
+            , div [ class "amenities-title" ] [ text "Facilitati"]
+            , div [ class "amenities" ]
+                  [ div [ class "icon-cont" ]
+                        [ img [ src "icons/_tv.svg" ] [ ]
+                        , div [ class "desc" ] [ text "TV" ]
+                        ]
+                  , div [ class "icon-cont" ]
+                        [ img [ src "icons/_hairdryer.svg" ] [ ]
+                        , div [ class "desc" ] [ text "Uscator de par" ]
+                        ]
+                  , div [ class "icon-cont" ]
+                        [ img [ src "icons/_minibar.svg" ] [ ]
+                        , div [ class "desc" ] [ text "Mini bar" ]
+                        ]
+                  , div [ class "icon-cont" ]
+                        [ img [ src "icons/_phone.svg" ] [ ]
+                        , div [ class "desc" ] [ text "Telefon" ]
+                        ]
+                  , div [ class "icon-cont" ]
+                        [ img [ src "icons/_room-service.svg" ] [ ]
+                        , div [ class "desc" ] [ text "Room service" ]
+                        ]
+                  , div [ class "icon-cont" ]
+                        [ img [ src "icons/_shower.svg" ] [ ]
+                        , div [ class "desc" ] [ text "Dus" ]
+                        ]
+                  , div [ class "icon-cont" ]
+                        [ img [ src "icons/_Wardrobe.svg" ] [ ]
+                        , div [ class "desc" ] [ text "Spatii de depozitare" ]
+                        ]
+                  , div [ class "icon-cont" ]
+                        [ img [ src "icons/_wifi.svg" ] [ ]
+                        , div [ class "desc" ] [ text "Wi-Fi de mare viteza" ]
+                        ]
+                  ]
+            , div [ class "picture-cont"]
+                  [ div [ ] [ img [ src "https://i.imgur.com/Ea1kShC.jpg" ] [ ] ]
+                  , div [ ] [ img [ src "https://i.imgur.com/lTmMZIs.jpg" ] [ ] ]
+                  ]
+            , div [ class "select" ]
+                  [ div [ class "select-button" ] [text "Selecteaza" ]
+                  ]
+            , img [ class "break", src "icons/break.svg" ] []
+            ]
       ]
 
 -- RESTAURANT PAGE --
